@@ -1,10 +1,6 @@
-"use client"
-
 import MyMenu from "@/components/molecules/my-menu/my-menu";
 import "./globals.css";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import { Container } from "@mui/material";
 
 export const metadata = {
   title: "Create Next App",
@@ -15,13 +11,13 @@ export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
-})  {
+}) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <MyMenu />
-        <div style={{ marginTop: '300px' }}>{children}</div> {/* Ajouter le style pour déplacer le contenu vers le bas */}
+        <div>{children}</div>
       </body>
     </html>
-  )
+  );
 }

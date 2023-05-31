@@ -1,89 +1,82 @@
-"use client"
+"use client";
 
-import PokemonCard from "@/components/molecules/pokemon-card/pokemon-card";
-import { Box, Button, Container, Grid } from "@mui/material";
-import { useState } from "react";
-import { PokemonList } from "@/types/pokemon";
+import { PokemonListAPI } from "@/types/pokemon-api";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Container,
+  Grid,
+  Pagination,
+} from "@mui/material";
+import { useEffect, useState } from "react";
+import PokemonCard from "../pokemon-card/pokemon-card";
+import { getData } from "@/api/pokemon-api";
 
-export interface PokemonListProps {
-    pookemonUrl: string;
+interface PokemonListProps {
+  data: PokemonListAPI;
 }
 
-export default function PokemonList(props:  PokemonListProps) {
-    const [loading, setLoading] = useState<boolean>(true)
-
-  const [pokemonList, setPokemonList] = useState<PokemonList>(props.data);
-  const [totalPages, setTotalPages] = useState<number>(props.data.count ?Math.ceil (props.data.count / 1281) : 1)
+export default function PokemonList(props: PokemonListProps) {
+  const [pokemonList, setPokemonList] = useState<PokemonListAPI>(props.data);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [totalPages, setTotalPages] = useState<number>(
+    Math.ceil(props.data.count ? props.data.count / 8 : 1)
+  );
   const [currentPage, setCurrentPage] = useState<number>(1);
 
+  useEffect(() => {
+    if (props.data) {
+      setLoading(false);
+    }
+  }, [props.data]);
 
-  async function getApiData(url: string) {
-    //const res = await fetch(url);
-    // The return value is *not* serialized
-    // You can return Date, Map, Set, etc.
+  function getApiData(url: string) {
+    setLoading(true);
 
-    // Recommendation: handle errors
-    //if (!res.ok) {
-      // This will activate the closest `error.js` Error Boundary
-      //throw new Error('Failed to fetch data');
-    //}
-    //return res.json();
+    getData(url)
+      .then((apiReturn) => {
+        setPokemonList(apiReturn);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }
 
-  //useEffect(() => {
-    //if (loading) {
-      //getApiData('https://pokeapi.co/api/v2/pokemon?limit=40&offset=0');
-    //}
-  //}, [loading]);
-
-  //function getApiData(url: string) {
-    //setLoading(true);
-
-    //getData(url)
-      //.then((apiReturn) => {
-        //setPokemonList(apiReturn);
-      //})
-      //.finally(() => {
-        //setLoading(false);
-      //});
-  //}
-
   return (
-    <main>
-      <Container fixed>
-        <Box sx={{ mb: 2}}>
-        <Grid container spacing={2}>
-          {pokemonList?.results.map((pokemon) => (
-            <Grid item xs={2.4} key={pokemon.name}>
-              <PokemonCard apiUrl={pokemon.url}/>
+    <Container fixed>
+      {loading ? (
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <CircularProgress />
+        </Box>
+      ) : (
+        <>
+          <Box sx={{ mb: 2 }}>
+            <Grid container spacing={2}>
+              {pokemonList?.results.map((pokemon) => (
+                <Grid item xs={3} key={pokemon.name}>
+                  <PokemonCard name={pokemon.name} pokemonUrl={pokemon.url} />
+                </Grid>
+              ))}
             </Grid>
-          ))}
-        </Grid>
-        </Box>
-        <Box sx={{ mt: 2 }}>
-          Total: {pokemonList?.count}
-          <Button variant="outlined"
-            disabled={pokemonList?.previous ? false : true}
-            onClick={() => {
-              if (pokemonList?.previous) {
-                getApiData(pokemonList?.previous)
-              }
-            }}
-          >
-            Previous
-          </Button>
-          | <Button variant="outlined"
-            disabled={pokemonList?.next ? false : true}
-            onClick={() => {
-              if (pokemonList?.next) {
-                getApiData(pokemonList?.next)
-              }
-            }}
-          >
-            Next
-          </Button>
-        </Box>
-      </Container>
-    </main>
+          </Box>
+          <Box sx={{ mt: 2 }}>
+            <Pagination
+              count={totalPages}
+              color="primary"
+              page={currentPage}
+              onChange={(e, page) => {
+                const offset = (page - 1) * 8;
+                setCurrentPage(page);
+
+                getApiData(
+                  `https://pokeapi.co/api/v2/pokemon?limit=8&offset=${offset}`
+                );
+              }}
+            />
+          </Box>
+        </>
+      )}
+    </Container>
   );
 }

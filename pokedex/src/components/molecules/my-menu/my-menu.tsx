@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -5,6 +7,8 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import { red } from '@mui/material/colors';
 import NextLink from 'next/link';
+import { useEffect, useState } from 'react';
+
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   alignItems: 'flex-start',
@@ -32,7 +36,7 @@ const CircleButton = styled('div')({
   justifyContent: 'center',
   alignItems: 'center',
   textDecoration: 'none',
-  color: 'inherit',
+  color: 'black', // Couleur du texte noire
   fontSize: '1rem',
   fontWeight: 'bold',
   cursor: 'pointer',
