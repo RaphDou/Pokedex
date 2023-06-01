@@ -19,7 +19,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   },
   backgroundColor: red[500],
   overflow: 'visible',
-  border: '4px solid black',
+  border: '8px solid black',
 }));
 
 const CircleButton = styled('div')({
@@ -31,7 +31,7 @@ const CircleButton = styled('div')({
   height: 120,
   backgroundColor: '#ffffff',
   borderRadius: '50%',
-  border: '4px solid black',
+  border: '8px solid black',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
