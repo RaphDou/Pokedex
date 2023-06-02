@@ -7,8 +7,6 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import { red } from '@mui/material/colors';
 import NextLink from 'next/link';
-import { useEffect, useState } from 'react';
-
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   alignItems: 'flex-start',
@@ -17,7 +15,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   '@media all': {
     minHeight: 128,
   },
-  backgroundColor: red[500],
+  backgroundColor: '#ffffff',
   overflow: 'visible',
   border: '8px solid black',
 }));
@@ -29,7 +27,6 @@ const CircleButton = styled('div')({
   transform: 'translateX(-50%)',
   width: 120,
   height: 120,
-  backgroundColor: '#ffffff',
   borderRadius: '50%',
   border: '8px solid black',
   display: 'flex',
@@ -40,19 +37,27 @@ const CircleButton = styled('div')({
   fontSize: '1rem',
   fontWeight: 'bold',
   cursor: 'pointer',
+  backgroundColor: 'transparent',
 });
 
-export default function MyMenu() {
+const FooterWrapper = styled('div')({
+  position: 'fixed',
+  bottom: 0,
+  left: 0,
+  width: '100%',
+  height: '128px',
+});
+
+export default function MyFooter() {
   return (
-    <Box sx={{ flexGrow: 1, marginTop: '128px' }}>
-      <AppBar position="fixed">
+    <FooterWrapper>
+      <AppBar position="static">
         <StyledToolbar>
           <NextLink href="/" passHref>
             <CircleButton as="a">Accueil</CircleButton>
           </NextLink>
         </StyledToolbar>
       </AppBar>
-    </Box>
+    </FooterWrapper>
   );
 }
-
