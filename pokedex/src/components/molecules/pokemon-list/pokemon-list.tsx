@@ -3,7 +3,6 @@
 import { PokemonListAPI } from "@/types/pokemon-api";
 import {
   Box,
-  Button,
   CircularProgress,
   Container,
   Grid,
