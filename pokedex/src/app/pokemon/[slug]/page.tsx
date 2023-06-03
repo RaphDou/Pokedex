@@ -1,7 +1,16 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
-
 import { useEffect, useState } from "react";
-import { Box, Breadcrumbs, Container, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  Breadcrumbs,
+  Container,
+  Grid,
+  Typography,
+  Tabs,
+  Tab,
+  Paper,
+} from "@mui/material";
 import Link from "next/link";
 
 interface Pokemon {
@@ -33,18 +42,33 @@ interface Pokemon {
       name: string;
     };
   }[];
-  base_experience: number;
-  stats: {
-    base_stat: number;
-    stat: {
+}
+
+interface EvolutionChain {
+  evolves_to: any;
+  species: {
+    name: string;
+    url: string;
+  };
+  id: number;
+  baby_trigger_item: null;
+  chain: {
+    is_baby: boolean;
+    species: {
       name: string;
+      url: string;
     };
-  }[];
+    evolution_details: null;
+    evolves_to: EvolutionChain[];
+  };
 }
 
 const PokemonPage = () => {
   const [pokemon, setPokemon] = useState<Pokemon | null>(null);
-  const [selectedTab, setSelectedTab] = useState<string>("about");
+  const [evolutionChain, setEvolutionChain] = useState<EvolutionChain | null>(
+    null
+  );
+  const [selectedTab, setSelectedTab] = useState<number>(0);
 
   useEffect(() => {
     const fetchPokemon = async () => {
@@ -53,9 +77,20 @@ const PokemonPage = () => {
         const pathname = window.location.pathname;
         const name = pathname.split("/")[2];
 
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+        const response = await fetch(
+          `https://pokeapi.co/api/v2/pokemon/${name}`
+        );
         const data = await response.json();
         setPokemon(data);
+
+        // Fetch the evolution chain
+        const speciesResponse = await fetch(data.species.url);
+        const speciesData = await speciesResponse.json();
+        const evolutionChainResponse = await fetch(
+          speciesData.evolution_chain.url
+        );
+        const evolutionChainData = await evolutionChainResponse.json();
+        setEvolutionChain(evolutionChainData);
       } catch (error) {
         console.log(error);
       }
@@ -64,34 +99,29 @@ const PokemonPage = () => {
     fetchPokemon();
   }, []);
 
-  const handleTabClick = (tab: string) => {
-    setSelectedTab(tab);
+  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+    setSelectedTab(newValue);
   };
 
   const renderPokemonInfo = () => {
     if (pokemon) {
       switch (selectedTab) {
-        case "evolution":
+        case 0:
           return (
             <div>
-              {/* Afficher les informations sur l'évolution du Pokémon ici */}
+              {evolutionChain && renderEvolutionChain(evolutionChain)}
             </div>
           );
-        case "about":
+        case 1:
           return (
             <div>
               {/* Afficher les informations générales sur le Pokémon ici */}
-              <Typography variant="body1">Species: {pokemon.species.name}</Typography>
-              <Typography variant="body1">Base Experience: {pokemon.base_experience}</Typography>
-              <Typography variant="body1">Types:</Typography>
-              <ul>
-                {pokemon.types.map((type) => (
-                  <li key={type.type.name}>{type.type.name}</li>
-                ))}
-              </ul>
+              <Typography variant="body1">
+                Species: {pokemon.species.name}
+              </Typography>
             </div>
           );
-        case "moves":
+        case 2:
           return (
             <div>
               {/* Afficher les mouvements du Pokémon ici */}
@@ -103,7 +133,7 @@ const PokemonPage = () => {
               </ul>
             </div>
           );
-        case "characteristics":
+        case 3:
           return (
             <div>
               {/* Afficher les caractéristiques du Pokémon ici */}
@@ -113,14 +143,6 @@ const PokemonPage = () => {
               <ul>
                 {pokemon.abilities.map((ability) => (
                   <li key={ability.ability.name}>{ability.ability.name}</li>
-                ))}
-              </ul>
-              <Typography variant="body1">Stats:</Typography>
-              <ul>
-                {pokemon.stats.map((stat) => (
-                  <li key={stat.stat.name}>
-                    {stat.stat.name}: {stat.base_stat}
-                  </li>
                 ))}
               </ul>
             </div>
@@ -133,55 +155,117 @@ const PokemonPage = () => {
     }
   };
 
+  const renderEvolutionChain = (chain: EvolutionChain | null) => {
+    if (chain) {
+      const renderEvolution = (evolution: EvolutionChain) => {
+        const pokemonId = evolution.species.url.split("/")[6];
+        const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
+
+        return (
+          <li key={evolution.species.name}>
+            <img src={imageUrl} alt={evolution.species.name} />
+            {evolution.species.name}
+            {evolution.evolves_to.length > 0 && (
+              <ul>{evolution.evolves_to.map(renderEvolution)}</ul>
+            )}
+          </li>
+        );
+      };
+
+      const renderChain = (evolutionChain: EvolutionChain) => {
+        if (evolutionChain.chain) {
+          const pokemonId = evolutionChain.chain.species.url.split("/")[6];
+          const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
+
+          return (
+            <ul>
+              <li>
+                <img
+                  src={imageUrl}
+                  alt={evolutionChain.chain.species.name}
+                />
+                {evolutionChain.chain.species.name}
+                {evolutionChain.chain.evolves_to.length > 0 && (
+                  <ul>{evolutionChain.chain.evolves_to.map(renderEvolution)}</ul>
+                )}
+              </li>
+            </ul>
+          );
+        } else {
+          return null;
+        }
+      };
+
+      return (
+        <div>
+          <Typography variant="body1">Evolution Chain:</Typography>
+          {renderChain(chain)}
+        </div>
+      );
+    } else {
+      return null;
+    }
+  };
+
   return (
     <Container>
-      {pokemon ? (
-        <Grid container spacing={2} justifyContent="center">
-          <Grid item xs={12}>
-            <Breadcrumbs>
-              <Link href="/">Home</Link>
-              <Typography>{pokemon.name}</Typography>
-            </Breadcrumbs>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Box
-              display="flex"
-              flexDirection="column"
-              alignItems="center"
-              mb={2}
-              textAlign="center"
-            >
-              {/* Rectangle supérieur */}
-              <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-              <Typography variant="h4">{pokemon.name}</Typography>
-              <Typography variant="body1">ID: {pokemon.id}</Typography>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Box display="flex" flexDirection="column" alignItems="center">
-              {/* Rectangle inférieur */}
+      <Box
+        mt={4}
+        mb={4}
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+      >
+        <Breadcrumbs>
+          <Link href="/" passHref>
+            <Typography component="a">Home</Typography>
+          </Link>
+          <Typography>Pokémon</Typography>
+        </Breadcrumbs>
+        <div style={{ marginTop: "2rem" }}>
+          {pokemon && (
+            <Paper>
               <Box
+                p={2}
                 display="flex"
-                justifyContent="center"
-                mb={2}
-                textAlign="center"
+                flexDirection="column"
+                alignItems="center"
               >
-                {/* Titres cliquables */}
-                <button onClick={() => handleTabClick("evolution")}>Évolution</button>
-                <button onClick={() => handleTabClick("about")}>À propos</button>
-                <button onClick={() => handleTabClick("moves")}>Mouvements</button>
-                <button onClick={() => handleTabClick("characteristics")}>Caractéristiques</button>
+                <Typography variant="body1">ID: {pokemon.id}</Typography>
+                <Typography variant="h4">{pokemon.name}</Typography>
+                <img
+                  src={pokemon.sprites.front_default}
+                  alt={pokemon.name}
+                  style={{ marginBottom: "1rem" }}
+                />
+                <Typography variant="body1">Types:</Typography>
+                <ul>
+                  {pokemon.types.map((type) => (
+                    <li key={type.type.name}>{type.type.name}</li>
+                  ))}
+                </ul>
               </Box>
-              {/* Contenu de l'information sélectionnée */}
-              {renderPokemonInfo()}
-            </Box>
-          </Grid>
-        </Grid>
-      ) : (
-        <Box display="flex" justifyContent="center" mt={4}>
-          <Typography variant="h6">Loading...</Typography>
-        </Box>
-      )}
+            </Paper>
+          )}
+        </div>
+        <div style={{ marginTop: "1rem", width: "100%" }}>
+          <Paper>
+            <Tabs
+              value={selectedTab}
+              onChange={handleTabChange}
+              indicatorColor="primary"
+              textColor="primary"
+              variant="fullWidth"
+            >
+              <Tab label="Evolution Chain" />
+              <Tab label="Species" />
+              <Tab label="Moves" />
+              <Tab label="Stats" />
+            </Tabs>
+            <Box p={2}>{renderPokemonInfo()}</Box>
+          </Paper>
+        </div>
+      </Box>
     </Container>
   );
 };

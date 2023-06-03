@@ -17,21 +17,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   border: '8px solid black',
 }));
 
-const CircleButton = styled('div')({
-  position: 'absolute',
-  left: '50%',
-  transform: 'translateX(-50%)',
-  width: 120,
-  height: 120,
-  borderRadius: '50%',
-  border: '8px solid black',
-  display: 'flex',
-  justifyContent: 'center',
-  backgroundColor: 'transparent',
-});
-
 const FooterWrapper = styled('div')({
-  position: 'fixed',
   bottom: 0,
   left: 0,
   width: '100%',
@@ -41,9 +27,7 @@ export default function MyFooter() {
   return (
     <FooterWrapper>
       <AppBar position="static">
-        <StyledToolbar>
-          <CircleButton></CircleButton>
-        </StyledToolbar>
+        <StyledToolbar></StyledToolbar>
       </AppBar>
     </FooterWrapper>
   );
