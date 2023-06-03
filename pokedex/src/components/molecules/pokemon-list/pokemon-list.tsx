@@ -64,7 +64,7 @@ export default function PokemonList(props: PokemonListProps) {
               count={totalPages}
               color="primary"
               page={currentPage}
-              onChange={(e, page) => {
+              onChange={(_e, page) => {
                 const offset = (page - 1) * 8;
                 setCurrentPage(page);
 
