@@ -1,7 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-"use client";
-
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { Card, CardActionArea, CardContent, CardMedia, Skeleton, Typography, Box } from "@mui/material";
