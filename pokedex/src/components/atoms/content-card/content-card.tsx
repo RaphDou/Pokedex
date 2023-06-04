@@ -9,15 +9,17 @@ export default function ContentCard() {
   return (
     <Card
       sx={{
-        maxWidth: 400,
+        maxWidth:400,
+        height:400,
         borderRadius: "0px 0px 20px 20px",
         boxShadow: "0 10px 20px rgba(0, 0, 0, 0.9)",
+        marginBottom:10,
       }}
     >
       <CardMedia
         component="img"
         image="https://easydrawingart.com/wp-content/uploads/2019/08/How-to-draw-Bulbasaur.jpg"
-        alt="Bullbazor"
+        alt="Bullbasaur"
       />
       <CardContent>
         <Typography
