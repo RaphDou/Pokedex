@@ -2,8 +2,7 @@
 import MyCard from "@/components/molecules/my-card/my-card";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import CardStat from "@/components/molecules/card-stats/card-stat";
-import SandBox from "@/components/molecules/sandbox/sandbox";
+
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -21,8 +20,8 @@ export default function Rootlayout({
   return (
     <html lang="en">
     <body className={inter.className}>
-   <MyCard/>
-   <SandBox/>
+   
+   
      <div>{children}</div></body>
     
     </html>
