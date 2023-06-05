@@ -18,7 +18,7 @@ export default function ContentCard() {
     >
       <CardMedia
         component="img"
-        image="https://easydrawingart.com/wp-content/uploads/2019/08/How-to-draw-Bulbasaur.jpg"
+        image=""
         alt="Bullbasaur"
       />
       <CardContent>
@@ -28,7 +28,7 @@ export default function ContentCard() {
           component="div"
           style={{ textAlign: "center" }}
         >
-          About Abilities Evolution Stat
+          
         </Typography>
 
         <Typography variant="body2" color="black" align="left">

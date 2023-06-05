@@ -1,5 +1,6 @@
 "use client";
 
+<<<<<<< Updated upstream
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -7,19 +8,26 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import { red } from '@mui/material/colors';
 import NextLink from 'next/link';
+=======
+import { styled } from "@mui/material/styles";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+
+>>>>>>> Stashed changes
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
-  alignItems: 'flex-start',
+  alignItems: "flex-start",
   paddingTop: theme.spacing(1),
   paddingBottom: theme.spacing(2),
-  '@media all': {
+  "@media all": {
     minHeight: 128,
   },
-  backgroundColor: '#ffffff',
-  overflow: 'visible',
-  border: '8px solid black',
+  backgroundColor: "#ffffff",
+  overflow: "visible",
+  border: "8px solid black",
 }));
 
+<<<<<<< Updated upstream
 const CircleButton = styled('div')({
   position: 'absolute',
   bottom: '-60px',
@@ -46,7 +54,15 @@ const FooterWrapper = styled('div')({
   left: 0,
   width: '100%',
   height: '128px',
+=======
+const FooterWrapper = styled("div")({
+  bottom: 0,
+  left: 0,
+  width: "100%",
+>>>>>>> Stashed changes
 });
+
+
 
 export default function MyFooter() {
   return (
