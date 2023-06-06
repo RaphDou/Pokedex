@@ -28,11 +28,7 @@ export default function HeaderCard(props: HeaderCardProps) {
         component="div"
         sx={{ color: "#FFFFFF", textAlign: "center", marginTop: "25px" }}
       >
-<<<<<<< Updated upstream
        
-=======
-        {props.pokemonName}
->>>>>>> Stashed changes
       </Typography>
       
       <CardActionArea>
@@ -46,15 +42,9 @@ export default function HeaderCard(props: HeaderCardProps) {
             marginRight: "25px",
           }}
         >
-<<<<<<< Updated upstream
          
         </Typography>
       
-=======
-          #{props.pokemonNumber}
-        </Typography>
-
->>>>>>> Stashed changes
       </CardActionArea>
     </Card>
   );
