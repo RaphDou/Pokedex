@@ -63,7 +63,7 @@ export default function PokemonCard(props: PokemonCardProps) {
 
   function formatId(id: number | undefined): string {
     if (id === undefined) return "";
-    if (id >= 1011) {
+    if (id >= 1011) {                   //We had a bug where id's over 1010 were displayed as exemple: 10001-10002-10003 
       const adjustedId = id - 8990;
       return adjustedId.toString();
     } else {
