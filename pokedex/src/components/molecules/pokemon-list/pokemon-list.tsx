@@ -12,6 +12,9 @@ import {
 import { useEffect, useState } from "react";
 import PokemonCard from "../pokemon-card/pokemon-card";
 import { getData } from "@/api/pokemon-api";
+import styles from "@/app/page.module.css";
+
+const { paginationContainer } = styles;
 
 interface PokemonListProps {
   data: PokemonListAPI;
@@ -80,7 +83,7 @@ export default function PokemonList(props: PokemonListProps) {
             </Grid>
           </Box>
           <Box sx={{ mt: 2 }}>
-            <div>
+            <div className={paginationContainer}>
               <Pagination
                 count={totalPages}
                 color="primary"
