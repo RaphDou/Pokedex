@@ -3,6 +3,7 @@
 import PokemonCard from "@/components/molecules/pokemon-card/pokemon-card";
 import { Box, Breadcrumbs, Container, Grid, Typography } from "@mui/material";
 import Link from "next/link";
+import HeaderCard from "@/components/atoms/header-card/header-card";
 
 <<<<<<< Updated upstream
 interface PokemonPageParams {
@@ -209,7 +210,15 @@ const PokemonPage = () => {
           return (
             <ul>
               <li>
+<<<<<<< Updated upstream
                 <img src={imageUrl} alt={evolutionChain.chain.species.name} />
+=======
+                <HeaderCard pokemonName={evolutionChain.chain.species.name} pokemonNumber={pokemonId}></HeaderCard>
+                <img
+                  src={imageUrl}
+                  alt={evolutionChain.chain.species.name}
+                />
+>>>>>>> Stashed changes
                 {evolutionChain.chain.species.name}
                 {evolutionChain.chain.evolves_to.length > 0 && (
                   <ul>

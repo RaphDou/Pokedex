@@ -4,7 +4,12 @@ import Card from "@mui/material/Card";
 import { CardActionArea } from "@mui/material";
 import { Typography } from "@mui/material";
 
-export default function headerCard() {
+interface HeaderCardProps{
+  pokemonName: string;
+  pokemonNumber: string;
+}
+
+export default function HeaderCard(props: HeaderCardProps) {
   return (
     
     <Card
@@ -23,7 +28,11 @@ export default function headerCard() {
         component="div"
         sx={{ color: "#FFFFFF", textAlign: "center", marginTop: "25px" }}
       >
+<<<<<<< Updated upstream
        
+=======
+        {props.pokemonName}
+>>>>>>> Stashed changes
       </Typography>
       
       <CardActionArea>
@@ -37,9 +46,15 @@ export default function headerCard() {
             marginRight: "25px",
           }}
         >
+<<<<<<< Updated upstream
          
         </Typography>
       
+=======
+          #{props.pokemonNumber}
+        </Typography>
+
+>>>>>>> Stashed changes
       </CardActionArea>
     </Card>
   );
