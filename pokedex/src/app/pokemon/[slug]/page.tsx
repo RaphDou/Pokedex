@@ -1,49 +1,19 @@
 "use client";
 
 import PokemonCard from "@/components/molecules/pokemon-card/pokemon-card";
-import { Box, Breadcrumbs, Container, Grid, Typography } from "@mui/material";
+import { Box, Breadcrumbs, Container, Grid, Paper, Tab, Tabs, Typography } from "@mui/material";
 import Link from "next/link";
 import HeaderCard from "@/components/atoms/header-card/header-card";
+import { useEffect, useState } from "react";
 
-<<<<<<< Updated upstream
+
 interface PokemonPageParams {
   params: {
     slug: string;
   };
 }
 
-export default function PokemonPage({ params }: PokemonPageParams) {
-  return (
-    <>
-      <Container fixed>
-        <Box
-          sx={{
-            mt: 2,
-            mb: 2,
-          }}
-        >
-          <Breadcrumbs aria-label="breadcrumb">
-            <Link href="/">Home</Link>
-            <Typography color="text.primary">{params.slug}</Typography>
-          </Breadcrumbs>
-        </Box>
-        <Grid container spacing={2}>
-          <Grid item xs={4}>
-            <PokemonCard pokemonUrl={`/${params.slug.toLowerCase()}.png`} />
-          </Grid>
-          <Grid item xs={8}>
-            <h1>{params.slug}</h1>
-            <hr></hr>
-            <Box>
-              <p>Test</p>
-            </Box>
-          </Grid>
-        </Grid>
-      </Container>
-    </>
-=======
-
-interface Pokemon  {
+interface Pokemon{
   id: number;
   name: string;
   height: number;
@@ -73,6 +43,7 @@ interface Pokemon  {
     };
   }[];
 }
+  
 
 interface EvolutionChain {
   evolves_to: any;
@@ -210,15 +181,15 @@ const PokemonPage = () => {
           return (
             <ul>
               <li>
-<<<<<<< Updated upstream
-                <img src={imageUrl} alt={evolutionChain.chain.species.name} />
-=======
+
+              
+
                 <HeaderCard pokemonName={evolutionChain.chain.species.name} pokemonNumber={pokemonId}></HeaderCard>
                 <img
                   src={imageUrl}
                   alt={evolutionChain.chain.species.name}
                 />
->>>>>>> Stashed changes
+
                 {evolutionChain.chain.species.name}
                 {evolutionChain.chain.evolves_to.length > 0 && (
                   <ul>
@@ -306,6 +277,6 @@ const PokemonPage = () => {
         </div>
       </Box>
     </Container>
->>>>>>> Stashed changes
+
   );
 }
