@@ -22,7 +22,7 @@ export default function PokemonList(props: PokemonListProps) {
   const [pokemonList, setPokemonList] = useState<PokemonListAPI>(props.data);
   const [loading, setLoading] = useState<boolean>(true);
   const [totalPages, setTotalPages] = useState<number>(
-    Math.ceil(props.data.count ? props.data.count / 8 : 1)
+    Math.ceil(props.data.count ? props.data.count / 16 : 1)
   );
   const [currentPage, setCurrentPage] = useState<number>(1);
 
@@ -40,8 +40,8 @@ export default function PokemonList(props: PokemonListProps) {
   }, [props.data]);
 
   useEffect(() => {
-    const offset = (currentPage - 1) * 8;
-    getApiData(`https://pokeapi.co/api/v2/pokemon?limit=8&offset=${offset}`);
+    const offset = (currentPage - 1) * 16;
+    getApiData(`https://pokeapi.co/api/v2/pokemon?limit=16&offset=${offset}`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [currentPage]);
 
