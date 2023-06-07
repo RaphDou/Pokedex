@@ -6,3 +6,9 @@
   padding: 6rem;
   min-height: 100vh;
 }
+
+.paginationContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Ajustez la marge supérieure selon vos besoins */
+}

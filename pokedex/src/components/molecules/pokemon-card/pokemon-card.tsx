@@ -34,7 +34,7 @@ export default function PokemonCard(props: PokemonCardProps) {
           throw new Error("Failed to fetch data");
         }
         const data = await res.json();
-
+    
         const types = data.types.map((typeData: any) => typeData.type.name);
         return {
           id: data.id,
@@ -46,6 +46,7 @@ export default function PokemonCard(props: PokemonCardProps) {
         console.error(error);
       }
     }
+    
 
     if (loading) {
       getData()
@@ -62,8 +63,16 @@ export default function PokemonCard(props: PokemonCardProps) {
 
   function formatId(id: number | undefined): string {
     if (id === undefined) return "";
-    return (id <= 999 ? id : id.toString().slice(0, -1))?.toString();
+    if (id >= 1011) {
+      const adjustedId = id - 8990;
+      return adjustedId.toString();
+    } else {
+      return id.toString();
+    }
   }
+  
+  
+  
 
   return (
     <Link href={props.name ? `/pokemon/${props.name}` : "#"}>

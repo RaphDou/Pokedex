@@ -1,7 +1,14 @@
 body {
   margin: 0;
+  background-color: lightgray;
 }
 
 a {
   text-decoration: none;
+}
+
+.paginationContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Ajustez la marge supérieure selon vos besoins */
 }

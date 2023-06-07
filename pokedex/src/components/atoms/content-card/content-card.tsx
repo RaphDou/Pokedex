@@ -20,7 +20,7 @@ export default function ContentCard() {
       <CardMedia
         component="img"
         image="https://easydrawingart.com/wp-content/uploads/2019/08/How-to-draw-Bulbasaur.jpg"
-        alt="Bullbasaur"
+        alt="Bulbasaur"
       />
       <CardContent>
         <Typography
