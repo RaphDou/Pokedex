@@ -1,6 +1,5 @@
 import MyMenu from "@/components/molecules/my-menu/my-menu";
 import "./globals.css";
-import MyFooter from "@/components/molecules/my-footer/my-footer";
 
 export const metadata = {
   title: "Create Next App",
@@ -17,7 +16,7 @@ export default function RootLayout({
       <body>
         <MyMenu />
         <div>{children}</div>
-        <MyFooter />
+        
       </body>
     </html>
   );

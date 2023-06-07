@@ -1,4 +1,4 @@
-import * as React from "react";
+
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -32,17 +32,7 @@ export default function ContentCard() {
         </Typography>
 
         <Typography variant="body2" color="black" align="left">
-          <div>HP:</div>
-
-          <div>Attack:</div>
-
-          <div>Defense:</div>
-
-          <div>Sp.Atk:</div>
-
-          <div>Sp.Def:</div>
-
-          <div>Sp.Def:</div>
+          
         </Typography>
       </CardContent>
     </Card>

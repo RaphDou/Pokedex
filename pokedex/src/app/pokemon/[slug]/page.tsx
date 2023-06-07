@@ -1,10 +1,9 @@
 "use client";
 
-import PokemonCard from "@/components/molecules/pokemon-card/pokemon-card";
 import { Box, Breadcrumbs, Container, Grid, Paper, Tab, Tabs, Typography } from "@mui/material";
 import Link from "next/link";
-import HeaderCard from "@/components/atoms/header-card/header-card";
 import { useEffect, useState } from "react";
+import CompleteCard from "@/components/complete-card/complete-card";
 
 
 interface PokemonPageParams {
@@ -181,10 +180,7 @@ const PokemonPage = () => {
           return (
             <ul>
               <li>
-
-              
-
-                <HeaderCard pokemonName={evolutionChain.chain.species.name} pokemonNumber={pokemonId}></HeaderCard>
+                <CompleteCard pokemonName={evolutionChain.chain.species.name} pokemonNumber={pokemonId} />
                 <img
                   src={imageUrl}
                   alt={evolutionChain.chain.species.name}

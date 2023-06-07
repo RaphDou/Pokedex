@@ -41,7 +41,7 @@ export default function HeaderCard(props: HeaderCardProps) {
             marginTop: "20px",
             marginRight: "25px",
           }}
-        >
+          >
          
         </Typography>
       
