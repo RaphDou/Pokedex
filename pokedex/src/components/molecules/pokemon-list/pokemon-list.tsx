@@ -30,10 +30,9 @@ export default function PokemonList(props: PokemonListProps) {
     Math.ceil(props.data.count ? props.data.count / 16 : 1)
   );
   const [currentPage, setCurrentPage] = useState<number>(1);
-
   useEffect(() => {
-    // Fetch all the data from the API
-    getApiData('https://pokeapi.co/api/v2/pokemon?limit=10000');
+
+    getApiData('https://pokeapi.co/api/v2/pokemon?limit=10000', setAllPokemonList) ;
 
     const storedPage = localStorage.getItem('currentPage');
     if (storedPage) {
@@ -45,18 +44,16 @@ export default function PokemonList(props: PokemonListProps) {
 
   useEffect(() => {
     const offset = (currentPage - 1) * 16;
-    getApiData(`https://pokeapi.co/api/v2/pokemon?limit=16&offset=${offset}`);
+    getApiData(`https://pokeapi.co/api/v2/pokemon?limit=16&offset=${offset}`, setFilteredPokemonList);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentPage]);
 
-  function getApiData(url: string) {
+  function getApiData(url: string, setFunction : Function) {
     setLoading(true);
 
     getData(url)
       .then((apiReturn) => {
-        setAllPokemonList(apiReturn);
-        setPokemonList(apiReturn);
-        setFilteredPokemonList(apiReturn);
+        setFunction(apiReturn);
       })
       .finally(() => {
         setLoading(false);
@@ -72,10 +69,10 @@ export default function PokemonList(props: PokemonListProps) {
     const value = event.target.value.toLowerCase();
     setFilter(value);
 
-    // Filter the pokemon list based on the name from allPokemonList
     const filteredList = allPokemonList.results.filter((pokemon) =>
       pokemon.name.toLowerCase().includes(value)
     );
+  
     setFilteredPokemonList({
       count: filteredList.length,
       results: filteredList,
