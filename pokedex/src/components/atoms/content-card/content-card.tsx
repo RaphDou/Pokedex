@@ -19,7 +19,11 @@ export default function ContentCard() {
       <CardMedia
         component="img"
         image=""
+<<<<<<< Updated upstream
         alt="Bullbasaur"
+=======
+        alt=""
+>>>>>>> Stashed changes
       />
       <CardContent>
         <Typography
@@ -28,11 +32,19 @@ export default function ContentCard() {
           component="div"
           style={{ textAlign: "center" }}
         >
+<<<<<<< Updated upstream
           
         </Typography>
 
         <Typography variant="body2" color="black" align="left">
           
+=======
+         
+        </Typography>
+
+        <Typography variant="body2" color="black" align="left">
+         
+>>>>>>> Stashed changes
         </Typography>
       </CardContent>
     </Card>
