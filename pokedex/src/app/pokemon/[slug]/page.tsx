@@ -119,6 +119,14 @@ const PokemonPage = () => {
               <Typography variant="body1">
                 Species: {pokemon.species.name}
               </Typography>
+              <Typography variant="body1">Height: {pokemon.height}</Typography>
+              <Typography variant="body1">Weight: {pokemon.weight}</Typography>
+              <Typography variant="body1">Abilities:</Typography>
+              <ul>
+                {pokemon.abilities.map((ability) => (
+                  <li key={ability.ability.name}>{ability.ability.name}</li>
+                ))}
+              </ul>
             </div>
           );
         case 2:
@@ -209,63 +217,52 @@ const PokemonPage = () => {
 
   return (
     <Container>
-      <Box
-        mt={4}
-        mb={4}
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-      >
+      <Box mt={4} mb={4}>
         <Breadcrumbs>
           <Link href="/" passHref>
             <Typography component="a">Home</Typography>
           </Link>
           <Typography>Pokémon</Typography>
         </Breadcrumbs>
-        <div style={{ marginTop: "2rem" }}>
-          {pokemon && (
-            <Paper>
-              <Box
-                p={2}
-                display="flex"
-                flexDirection="column"
-                alignItems="center"
-              >
-                <Typography variant="body1">ID: {pokemon.id}</Typography>
-                <Typography variant="h4">{pokemon.name}</Typography>
-                <img
-                  src={pokemon.sprites.front_default}
-                  alt={pokemon.name}
-                  style={{ marginBottom: "1rem" }}
-                />
-                <Typography variant="body1">Types:</Typography>
-                <ul>
-                  {pokemon.types.map((type) => (
-                    <li key={type.type.name}>{type.type.name}</li>
-                  ))}
-                </ul>
-              </Box>
-            </Paper>
-          )}
-        </div>
-        <div style={{ marginTop: "1rem", width: "100%" }}>
-          <Paper>
-            <Tabs
-              value={selectedTab}
-              onChange={handleTabChange}
-              indicatorColor="primary"
-              textColor="primary"
-              variant="fullWidth"
-            >
-              <Tab label="Evolution Chain" />
-              <Tab label="Species" />
-              <Tab label="Moves" />
-              <Tab label="Stats" />
-            </Tabs>
-            <Box p={2}>{renderPokemonInfo()}</Box>
-          </Paper>
-        </div>
       </Box>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <Paper>
+            <Box p={2} display="flex" flexDirection="column" alignItems="center">
+              {pokemon && (
+                <>
+                  <Typography variant="body1">ID: {pokemon.id}</Typography>
+                  <Typography variant="h4">{pokemon.name}</Typography>
+                  <img
+                    src={pokemon.sprites.front_default}
+                    alt={pokemon.name}
+                    style={{ marginBottom: "1rem" }}
+                  />
+                  <Typography variant="body1">Types:</Typography>
+                  <ul>
+                    {pokemon.types.map((type) => (
+                      <li key={type.type.name}>{type.type.name}</li>
+                    ))}
+                  </ul>
+                </>
+              )}
+              <Tabs
+                value={selectedTab}
+                onChange={handleTabChange}
+                indicatorColor="primary"
+                textColor="primary"
+                variant="fullWidth"
+              >
+                <Tab label="Evolution Chain" />
+                <Tab label="Species" />
+                <Tab label="Moves" />
+                <Tab label="Stats" />
+              </Tabs>
+              <Box p={2}>{renderPokemonInfo()}</Box>
+            </Box>
+          </Paper>
+        </Grid>
+      </Grid>
     </Container>
   );
 };
