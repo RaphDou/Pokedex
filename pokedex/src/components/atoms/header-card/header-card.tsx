@@ -3,7 +3,7 @@
 import Card from "@mui/material/Card";
 import { CardActionArea } from "@mui/material";
 import { Typography } from "@mui/material";
-import SandBox from "@/components/molecules/sandbox/sandbox";
+
 
 export default function headerCard() {
   return (
@@ -38,9 +38,9 @@ export default function headerCard() {
             marginRight: "25px",
           }}
         >
-          #001
+          
         </Typography>
-        <SandBox/>
+       
       </CardActionArea>
     </Card>
   );

@@ -1,0 +1,45 @@
+.default-background {
+    background-color: #f0f0f0;
+  }
+  
+  .fire-background {
+    background-color: #ff0000;
+  }
+  
+  .water-background {
+    background-color: #0000ff;
+  }
+
+  .grass-background{
+    background-color: lightseagreen;
+    
+  }
+
+.card-header{
+    border-radius: 30px;
+    border: 2px solid black;
+  padding: 5px;
+  box-shadow: 2px 2px 2px 2px 
+
+}
+  
+
+  /* Ajouter les types de pokemon */
+  
+  .rounded-card{
+    border-radius: 50px;
+  }
+
+  .small-card-content{
+    width: 1000px; 
+  height: 1000px;
+  margin:auto;
+  margin-bottom: 100px;
+  margin-top: 100px;
+  }
+
+  .box-shadow {
+    border: 2px solid black;
+  padding: 5px;
+  box-shadow: 10px 10px 10px 10px 
+  }
