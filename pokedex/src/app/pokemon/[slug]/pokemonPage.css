@@ -3,17 +3,98 @@
   }
   
   .fire-background {
-    background-color: #ff0000;
+    background: rgb(255,0,0);
+background: linear-gradient(90deg, rgba(255,0,0,1) 18%, rgba(255,0,86,1) 49%, rgba(255,0,0,1) 91%);
   }
   
   .water-background {
-    background-color: #0000ff;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 49%);
   }
 
   .grass-background{
-    background-color: lightseagreen;
-    
+    background-color: #3ff458;
+background: linear-gradient(132deg, #3ff458 0%, #16A085 100%);
+}
+
+.psychic-background{
+    background: rgb(249,85,135);
+background: linear-gradient(90deg, rgba(249,85,135,1) 18%, rgba(255,0,86,1) 49%, rgba(249,85,135,1) 91%);
+}
+
+  .normal-background{
+    background: rgb(173,165,148);
+background: linear-gradient(90deg, rgba(173,165,148,1) 28%, rgba(173,165,148,1) 54%, rgba(112,98,69,1) 94%);
   }
+
+  .electric-background{
+    background-color: #d0d041;
+    background: linear-gradient(43deg, #d0d041 0%, #c8b750 46%, #FFCC70 100%);
+     ;
+  }
+
+  .ice-background{
+    background-color: #74EBD5;
+    background: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%);
+}
+
+.fighting-background{
+    background-color: #662a2a;
+background: linear-gradient(180deg, #662a2a 0%, #ff1a1a 28%, #FF0000 53%);
+
+}
+
+.poison-background{
+    background-color: #9143a1;
+background: linear-gradient(135deg, #9143a1 0%, #cd04cd 100%);
+
+}
+
+.ground-background{
+    background-color: #ffffff;
+    background: linear-gradient(45deg, #ffffff 0%, #FFFB7D 38%);
+}
+
+.flying-background{
+    background: rgb(169,143,243);
+    background: linear-gradient(90deg, rgba(169,143,243,1) 37%, rgba(255,255,255,1) 54%, rgba(169,143,243,1) 73%);
+}
+
+.bug-background{
+    background: rgb(166,185,26);
+background: linear-gradient(90deg, rgba(166,185,26,1) 28%, rgba(198,215,114,1) 54%, rgba(166,185,26,1) 94%);
+}
+
+.rock-background{
+    background: rgb(182,161,54);
+background: linear-gradient(90deg, rgba(182,161,54,1) 28%, rgba(213,187,56,1) 54%, rgba(182,161,54,1) 94%);
+}
+
+.ghost-background{
+    background: rgb(115,87,151);
+background: linear-gradient(90deg, rgba(115,87,151,1) 28%, rgba(125,83,179,1) 54%, rgba(176,147,214,1) 94%);
+}
+
+.dragon-background{
+    background: rgb(119,80,214);
+background: linear-gradient(90deg, rgba(119,80,214,1) 28%, rgba(111,53,252,1) 54%, rgba(131,106,191,1) 94%);
+}
+
+.dark-background{
+    background: rgb(112,87,70);
+background: linear-gradient(90deg, rgba(112,87,70,1) 28%, rgba(112,87,70,1) 54%, rgba(79,68,60,1) 94%);
+}
+
+.steel-background{
+    background: rgb(183,183,206);
+background: linear-gradient(90deg, rgba(183,183,206,1) 28%, rgba(183,183,206,1) 54%, rgba(144,144,192,1) 94%);
+}
+
+.fairy-background{
+    background: rgb(214,133,173);
+background: linear-gradient(90deg, rgba(214,133,173,1) 28%, rgba(214,133,173,1) 54%, rgba(241,189,214,1) 94%);
+}
+/* Ajouter les types de pokemon */
 
 .card-header{
     border-radius: 30px;
@@ -24,7 +105,7 @@
 }
   
 
-  /* Ajouter les types de pokemon */
+  
   
   .rounded-card{
     border-radius: 50px;

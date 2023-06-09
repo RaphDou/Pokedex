@@ -74,6 +74,36 @@ const getBackgroundColorClass = (pokemon: Pokemon): string => {
         return 'water-background';
         case 'grass': 
         return 'grass-background'; 
+        case 'normal': 
+        return 'normal-background';
+        case 'fighting': 
+        return 'fighting-background'; 
+        case 'electric': 
+        return 'electric-background'; 
+        case 'ice': 
+        return 'ice-background'; 
+        case 'poison': 
+        return 'poison-background'; 
+        case 'ghost': 
+        return 'ghost-background'; 
+        case 'ground': 
+        return 'ground-background'; 
+        case 'flying': 
+        return 'flying-background'; 
+        case 'psychic': 
+        return 'psychic-background'; 
+        case 'dragon': 
+        return 'dragon-background'; 
+        case 'bug': 
+        return 'bug-background'; 
+        case 'dark': 
+        return 'dark-background'; 
+        case 'rock': 
+        return 'rock-background'; 
+        case 'steel': 
+        return 'steel-background';
+        case 'fairy': 
+        return 'fairy-background';  
         
       default:
         return 'default-background'; 
